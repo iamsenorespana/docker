@@ -1,0 +1,543 @@
+paths:
+  /pokemons:
+    post:
+      tags:
+        - pokemon
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: pokemon.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/pokemon'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/pokemon'
+      deprecated: false
+    put:
+      tags:
+        - pokemon
+      summary: Update an existing model instance or insert a new one into the data source.
+      operationId: pokemon.upsert
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/pokemon'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/pokemon'
+      deprecated: false
+    get:
+      tags:
+        - pokemon
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: pokemon.find
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/pokemon'
+      deprecated: false
+  '/pokemons/{id}/exists':
+    get:
+      tags:
+        - pokemon
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'pokemon.exists__get_pokemons_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+  '/pokemons/{id}':
+    head:
+      tags:
+        - pokemon
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'pokemon.exists__head_pokemons_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - pokemon
+      summary: Find a model instance by id from the data source.
+      operationId: pokemon.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: Filter defining fields and include
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/pokemon'
+      deprecated: false
+    delete:
+      tags:
+        - pokemon
+      summary: Delete a model instance by id from the data source.
+      operationId: pokemon.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    put:
+      tags:
+        - pokemon
+      summary: Update attributes for a model instance and persist it into the data source.
+      operationId: pokemon.prototype.updateAttributes
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/pokemon'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/pokemon'
+      deprecated: false
+  /pokemons/findOne:
+    get:
+      tags:
+        - pokemon
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: pokemon.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/pokemon'
+      deprecated: false
+  /pokemons/update:
+    post:
+      tags:
+        - pokemon
+      summary: Update instances of the model matched by where from the data source.
+      operationId: pokemon.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/pokemon'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: The number of instances updated
+            type: object
+      deprecated: false
+  /pokemons/count:
+    get:
+      tags:
+        - pokemon
+      summary: Count instances of the model matched by where from the data source.
+      operationId: pokemon.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+  /employees:
+    post:
+      tags:
+        - employee
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: employee.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/employee'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/employee'
+      deprecated: false
+    put:
+      tags:
+        - employee
+      summary: Update an existing model instance or insert a new one into the data source.
+      operationId: employee.upsert
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/employee'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/employee'
+      deprecated: false
+    get:
+      tags:
+        - employee
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: employee.find
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/employee'
+      deprecated: false
+  '/employees/{id}/exists':
+    get:
+      tags:
+        - employee
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'employee.exists__get_employees_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+  '/employees/{id}':
+    head:
+      tags:
+        - employee
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'employee.exists__head_employees_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - employee
+      summary: Find a model instance by id from the data source.
+      operationId: employee.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: Filter defining fields and include
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/employee'
+      deprecated: false
+    delete:
+      tags:
+        - employee
+      summary: Delete a model instance by id from the data source.
+      operationId: employee.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    put:
+      tags:
+        - employee
+      summary: Update attributes for a model instance and persist it into the data source.
+      operationId: employee.prototype.updateAttributes
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/employee'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/employee'
+      deprecated: false
+  /employees/findOne:
+    get:
+      tags:
+        - employee
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: employee.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/employee'
+      deprecated: false
+  /employees/update:
+    post:
+      tags:
+        - employee
+      summary: Update instances of the model matched by where from the data source.
+      operationId: employee.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/employee'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: The number of instances updated
+            type: object
+      deprecated: false
+  /employees/count:
+    get:
+      tags:
+        - employee
+      summary: Count instances of the model matched by where from the data source.
+      operationId: employee.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+definitions:
+  pokemon:
+    properties:
+      data:
+        type: object
+      height:
+        type: string
+      name:
+        type: string
+      weight:
+        type: number
+        format: double
+      id:
+        type: string
+    required:
+      - name
+    additionalProperties: false
+  x-any:
+    properties: {}
+  employee:
+    properties:
+      firstname:
+        type: string
+      lastname:
+        type: string
+      id:
+        type: number
+        format: double
+    required:
+      - firstname
+    additionalProperties: false
+swagger: '2.0'
+info:
+  x-ibm-name: pokemon
+  version: 1.0.0
+  title: pokemon
+schemes:
+  - https
+host: $(catalog.host)
+basePath: /api
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+  clientSecretHeader:
+    in: header
+    name: X-IBM-Client-Secret
+    type: apiKey
+security:
+  - clientIdHeader: []
+    clientSecretHeader: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  catalogs:
+    apic-dev:
+      properties:
+        runtime-url: $(TARGET_URL)
+    sb:
+      properties:
+        runtime-url: 'http://localhost:4001'
+  assembly:
+    execute:
+      - invoke:
+          target-url: $(runtime-url)$(request.path)$(request.search)

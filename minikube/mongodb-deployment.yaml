@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mongodb
+  name: mongodb
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mongodb
+    spec:
+      containers:
+      - name: mongodb
+        resources: {}
+        volumeMounts:
+        - mountPath: /data/db
+          name: mongodb-claim0
+      restartPolicy: Always
+      volumes:
+      - name: mongodb-claim0
+        persistentVolumeClaim:
+          claimName: mongodb-claim0
+status: {}

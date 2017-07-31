@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: loopback
+  name: loopback
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: loopback
+    spec:
+      containers:
+      - name: loopback
+        image: ozairs/loopback
+      restartPolicy: Always
+status: {}

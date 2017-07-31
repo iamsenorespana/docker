@@ -1,0 +1,35 @@
+# docker-compose.yml
+version: '2'
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - $PWD/conf:/etc/prometheus/
+    command:
+      - '-config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - '10090:9090'
+
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+      - '9100:9100'
+
+  grafana:
+    image: grafana/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=passw0rd
+    depends_on:
+      - prometheus
+    ports:
+      - '13000:3000'
+  
+  cadvisor:
+    image: google/cadvisor:latest
+    ports:
+      - '8090:8080'
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro

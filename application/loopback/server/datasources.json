@@ -1,0 +1,17 @@
+{
+  "memory": {
+    "name": "memory",
+    "localStorage": "",
+    "file": "",
+    "connector": "memory"
+  },
+  "mongo": {
+    "host": "mongodb",
+    "port": 27017,
+    "database": "pokemon",
+    "username": "",
+    "password": "",
+    "name": "mongo",
+    "connector": "mongodb"
+  }
+}

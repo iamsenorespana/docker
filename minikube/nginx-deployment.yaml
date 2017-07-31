@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: nginx
+  name: nginx
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: nginx
+    spec:
+      containers:
+      - env:
+        - name: GATEWAY_DNS
+          value: microgateway:4000
+        name: nginx
+        ports:
+        - containerPort: 443
+          image: ozairs/nginx
+      restartPolicy: Always
+status: {}

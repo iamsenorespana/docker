@@ -1,0 +1,59 @@
+version: "2"
+services:
+
+  logspout:
+    image: "gliderlabs/logspout"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    depends_on:
+      - "logstash"
+    environment:
+      - "SYSLOG_FORMAT=rfc3164"
+    command:
+      - "syslog://logstash:5000"
+    networks: 
+     - external
+
+  logstash:
+    image: "logstash:latest"
+    volumes:
+      - "$PWD/logstash/conf:/opt/logstash/conf.d"
+    command: -f /opt/logstash/conf.d/logstash.conf
+    ports:
+      - "5000:5000"
+    depends_on:
+      - "elasticsearch"
+    networks: 
+     - external
+     - internal
+
+  elasticsearch:
+    image: "elasticsearch:latest"
+    ports:
+      - "9200:9200"
+    volumes:
+      - "elastic-data:/usr/share/elasticsearch/data"
+      - "$PWD/elasticsearch/conf:/usr/share/elasticsearch/config/"
+    networks: 
+     - internal
+
+  kibana:
+    image: "kibana:latest"
+    ports:
+      - "5601:5601"
+    depends_on:
+      - "elasticsearch"
+    environment:
+      - "ELASTICSEARCH_URL=http://elasticsearch:9200"
+    networks: 
+     - internal
+
+volumes:
+  elastic-data:
+    driver: local
+
+networks:
+  external:
+    driver: bridge
+  internal:
+    driver: bridge

@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: testserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: testserver
+    spec:
+      containers:
+      - name: testserver
+        image: andygrunwald/simple-webserver
+        ports:
+        - containerPort: 8082
