@@ -1,0 +1,4 @@
+./application/loopback/node_modules/
+./application/microgateway/node_modules/
+./application/mongodb/data
+./elk/elasticsearch/data

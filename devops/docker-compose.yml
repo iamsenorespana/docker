@@ -15,13 +15,3 @@ services:
     - gitlab
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-
- gitlab:
-  image: gitlab/gitlab-ce:8.16.7-ce.0
-  restart: always
-  environment:
-    GITLAB_OMNIBUS_CONFIG: |
-      external_url 'http://gitlab/'
-      # Add any other gitlab.rb configuration here, each on its own line
-  ports:
-    - "8000:80"

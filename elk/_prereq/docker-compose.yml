@@ -1,0 +1,45 @@
+version: "2"
+
+services:
+
+  nginx:
+    build: /../../application/microgateway/nginx
+    environment:
+      - GATEWAY_DNS=microgateway:4000
+    ports:
+      - "4430:443"
+    container_name: nginx
+    depends_on:
+      - microgateway
+    networks: 
+     - external
+    
+  microgateway:
+    build: /../../application/microgateway
+    ports:
+      - "4000:4000"
+    depends_on:
+      - "loopback"
+    networks: 
+     - external
+     - internal
+
+  loopback:
+    build: /../../application/loopback
+    depends_on:
+      - "mongodb"
+    networks: 
+     - internal
+
+  mongodb:
+    build: /../../application/mongodb
+    volumes:
+      - "$PWD/mongodb/data:/data/db"
+    networks: 
+     - internal
+
+networks:
+  external:
+    driver: bridge
+  internal:
+    driver: bridge
