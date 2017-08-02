@@ -1,4 +1,4 @@
-# Technologies for building a born on the cloud startup
+# Building a born on the cloud startup
 
 The technology barrier for startups is lower than ever with easy access to cloud services and mature open source technologies. In this post, I will talk about my vision for building a container-based cloud solution, focusing on open source technologies in a vendor agnostic approach. It will cover key functional and non-functional requirements, from logging, monitoring, security and application development. I don't have an idea for my startup at this time, but I consider that a small detail in the overall big picture :)
 
